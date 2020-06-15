@@ -1,0 +1,20 @@
+{
+  "name": "screenshot-api",
+  "version": "1.0.0",
+  "description": "An open source api that captures screenshot of various websites.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "keywords": [
+    "Screenshot-api",
+    "Screenshot"
+  ],
+  "author": "Piyush Suthar",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^3.1.0",
+    "express": "^4.17.1"
+  }
+}
