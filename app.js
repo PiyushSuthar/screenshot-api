@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const puppeteer = require('puppeteer');
 
+var port = process.env.PORT || 8000
+
 app.get("/", async (request, response) => {
     try {
         const browser = await puppeteer.launch({
@@ -20,4 +22,4 @@ app.get("/", async (request, response) => {
     }
 });
 
-app.listen(3000);
+app.listen(port);
