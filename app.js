@@ -7,11 +7,18 @@ var port = process.env.PORT || 8000
 app.get("/", async (request, response) => {
     try {
         const browser = await puppeteer.launch({
-            args: ['--no-sandbox']
+            args: [
+                '--no-sandbox',
+                '--disable-setuid-sandbox',
+              ],
         });
         const page = await browser.newPage();
+        // await page.setViewport({
+        //     width: 1200,
+        //     height: 700
+        //   });
         await page.goto(request.query.url); // Read url query parameter.
-        const image = await page.screenshot({ fullPage: true });
+        const image = await page.screenshot({ fullPage: true});
         await browser.close();
         response.set('Content-Type', 'image/png');
         response.send(image);
