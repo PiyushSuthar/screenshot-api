@@ -5,6 +5,12 @@ const puppeteer = require('puppeteer');
 var port = process.env.PORT || 8000
 
 app.get("/", async (request, response) => {
+    var url;
+    if (request.query.url.slice(0,4) === "http" ) {
+        url = request.query.url
+    } else {
+        url = `http://${request.query.url}`
+    }
     try {
         const browser = await puppeteer.launch({
             args: [
@@ -17,7 +23,7 @@ app.get("/", async (request, response) => {
         //     width: 1200,
         //     height: 700
         //   });
-        await page.goto(request.query.url); // Read url query parameter.
+        await page.goto(url); // Read url query parameter.
         const image = await page.screenshot({ fullPage: true});
         await browser.close();
         response.set('Content-Type', 'image/png');
